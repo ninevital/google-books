@@ -12,6 +12,20 @@ import { fetchFirstBooks } from "./async/fetchBooks";
 function Header() {
   const dispatch = useDispatch();
   const query = useSelector((state) => state.input.inputValue);
+  const category = useSelector((state) => state.filter.category);
+  const sorter = useSelector((state) => state.filter.sortBy);
+
+  const handleCategorySelection = (event) => {
+    event.preventDefault();
+    const value = event.target.value;
+    dispatch({ type: "CHANGE_CATEGORY", payload: value });
+  };
+
+  const handleSorterSelection = (event) => {
+    event.preventDefault();
+    const value = event.target.value;
+    dispatch({ type: "CHANGE_SORTER", payload: value });
+  };
 
   const handleChange = (event) => {
     const input = event.target.value;
@@ -20,7 +34,7 @@ function Header() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(fetchFirstBooks(query));
+    dispatch(fetchFirstBooks(query, category, sorter));
   };
 
   return (
@@ -55,8 +69,8 @@ function Header() {
                   Categories
                 </Form.Label>
                 <Col md={8}>
-                  <Form.Select>
-                    <option value="all">all</option>
+                  <Form.Select onChange={handleCategorySelection}>
+                    <option value="">all</option>
                     <option value="art">art</option>
                     <option value="biography">biography</option>
                     <option value="computers">computers</option>
@@ -73,7 +87,7 @@ function Header() {
                   Sorting by
                 </Form.Label>
                 <Col md={8}>
-                  <Form.Select>
+                  <Form.Select onChange={handleSorterSelection}>
                     <option value="relevance">relevance</option>
                     <option value="newest">newest</option>
                   </Form.Select>
