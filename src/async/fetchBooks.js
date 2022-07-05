@@ -24,8 +24,7 @@ export const fetchFirstBooks = (query, category, sorter) => {
 };
 
 export const fetchMoreBooks = (query, startIndex, category, sorter) => {
-  const categorySearch = category === "" ? "" : "+subject:${category}";
-  console.log(sorter);
+  const categorySearch = category === "" ? "" : `+subject:${category}`;
   return function(dispatch) {
     dispatch(changeLoadingStateAction());
     fetch(
