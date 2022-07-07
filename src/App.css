@@ -1,16 +1,7 @@
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .App-header {
@@ -28,18 +19,51 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .header {
   color: white;
   background-color: #282c34;
-  /* background: url(./bg_header.jpg) no-repeat;
-  background-size: cover; */
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 4px;
+  padding: 5px;
+  height: 100%;
+  width: 18rem;
+  margin: 0 -10px;
+}
+
+.book-card:hover {
+  filter: brightness(0.9);
+}
+
+.book-container {
+  min-height: 90vh;
+  min-width: 90vw;
+  background-color: #f3f2f1;
+  margin-top: 1em;
+  padding-right: 5em;
+}
+
+.book-cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.book-cover > .book-image {
+  width: 50%;
+  box-shadow: 10px 10px 5px #ccc;
+  -moz-box-shadow: 10px 10px 5px #ccc;
+  -webkit-box-shadow: 10px 10px 5px #ccc;
+  -khtml-box-shadow: 10px 10px 5px #ccc;
+}
+
+.content-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: justify;
 }

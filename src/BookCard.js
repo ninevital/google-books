@@ -1,7 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import "./App.css";
+import { useDispatch } from "react-redux";
 
 function BookCard(props) {
   const dispatch = useDispatch();
@@ -15,11 +16,20 @@ function BookCard(props) {
       key={props.props.id}
       to={`/books/${props.props.id}`}
       onClick={storeBookData}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      <Card style={{ width: "18rem" }} key={props.props.id}>
-        <Card.Text>{props.props.volumeInfo.categories}</Card.Text>
+      <Card
+        key={props.props.id}
+        className="book-card"
+        border="light"
+        bg="light"
+      >
+        <Card.Text style={{ minHeight: "24px" }}>
+          {props.props.volumeInfo.categories}
+        </Card.Text>
         <Card.Img
           variant="top"
+          className="card-image"
           src={
             props.props.volumeInfo.imageLinks
               ? props.props.volumeInfo.imageLinks.thumbnail
@@ -27,9 +37,11 @@ function BookCard(props) {
           }
         />
         <Card.Body>
-          <Card.Title>{props.props.volumeInfo.title}</Card.Title>
-          <Card.Text>
-            {props.props.volumeInfo.authors && props.props.volumeInfo.authors
+          <Card.Title className="card-title">
+            {props.props.volumeInfo.title}
+          </Card.Title>
+          <Card.Text className="card-authors">
+            {props.props.volumeInfo.authors
               ? props.props.volumeInfo.authors.map((author) => {
                   return (
                     <span>

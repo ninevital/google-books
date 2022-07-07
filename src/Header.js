@@ -39,7 +39,7 @@ function Header() {
 
   return (
     <div className="header">
-      <Container>
+      <Container className="mb-5">
         <Row className="mb-5">
           <h1 className="mt-5">Search for books</h1>
         </Row>

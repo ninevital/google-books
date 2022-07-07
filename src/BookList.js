@@ -10,7 +10,7 @@ function BookList() {
   const bookItems = books.map((chunk) =>
     chunk.map((book) => {
       return (
-        <Col className="mb-5" md={3}>
+        <Col className="mb-5 mx-auto md-auto justify-content-center">
           <BookCard props={book} key={book.id} />
         </Col>
       );
@@ -18,7 +18,7 @@ function BookList() {
   );
 
   return (
-    <Container>
+    <Container className="justify-content-center">
       <Row className="mb-5 justify-content-center">{bookItems}</Row>
     </Container>
   );

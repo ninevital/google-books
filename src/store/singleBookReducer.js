@@ -13,8 +13,8 @@ export const singleBookReducer = (state = defaultState, action) => {
         ...state,
         image: action.payload.volumeInfo.imageLinks.thumbnail,
         title: action.payload.volumeInfo.title,
-        categories: [action.payload.volumeInfo.categories],
-        authors: [action.payload.volumeInfo.authors],
+        categories: action.payload.volumeInfo.categories,
+        authors: action.payload.volumeInfo.authors,
         description: action.payload.volumeInfo.description,
       };
     default:

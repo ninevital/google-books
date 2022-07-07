@@ -1,37 +1,55 @@
 import { fetchFirstBooksAction } from "../store/booksReducer";
 import { fetchMoreBooksAction } from "../store/booksReducer";
 import { changeLoadingStateAction } from "../store/booksReducer";
+import { initStateAction } from "../store/booksReducer";
 
 const APIKey = "AIzaSyDuhmC1gJrQxGjeGDbJbOLRUCi_Ea0ZSMw";
 
-// orderBy=newest
-// +subject:computers
-
 export const fetchFirstBooks = (query, category, sorter) => {
   const categorySearch = category === "" ? "" : `+subject:${category}`;
-  console.log(
-    `https://www.googleapis.com/books/v1/volumes?q=${query}${categorySearch}&startIndex=0&maxResults=30&orderBy=${sorter}&key=${APIKey}`
-  );
-  return function(dispatch) {
+
+  return async function(dispatch) {
+    dispatch(initStateAction());
     dispatch(changeLoadingStateAction());
-    fetch(
+    await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}${categorySearch}&startIndex=0&maxResults=30&orderBy=${sorter}&key=${APIKey}`
     )
-      .then((response) => response.json())
-      .then((json) => dispatch(fetchFirstBooksAction(json.items)));
+      .then((response) => {
+        if (response.ok) {
+          console.log(
+            `https://www.googleapis.com/books/v1/volumes?q=${query}${categorySearch}&startIndex=0&maxResults=30&orderBy=${sorter}&key=${APIKey}`
+          );
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((json) => {
+        dispatch(fetchFirstBooksAction(json));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     dispatch(changeLoadingStateAction());
   };
 };
 
 export const fetchMoreBooks = (query, startIndex, category, sorter) => {
   const categorySearch = category === "" ? "" : `+subject:${category}`;
-  return function(dispatch) {
+  return async function(dispatch) {
     dispatch(changeLoadingStateAction());
-    fetch(
+    await fetch(
       `https://www.googleapis.com/books/v1/volumes?q=${query}${categorySearch}&startIndex=${startIndex}&maxResults=30&orderBy=${sorter}&key=${APIKey}`
     )
-      .then((response) => response.json())
-      .then((json) => dispatch(fetchMoreBooksAction(json.items)));
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
+      })
+      .then((json) => dispatch(fetchMoreBooksAction(json)))
+      .catch((error) => {
+        console.log(error);
+      });
     dispatch(changeLoadingStateAction());
   };
 };

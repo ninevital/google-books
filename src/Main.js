@@ -8,11 +8,12 @@ import { fetchMoreBooks } from "./async/fetchBooks";
 import BookList from "./BookList";
 
 function Main() {
-  const startingIndex = useSelector((state) => state.books.numberOfBooks);
+  const startingIndex = useSelector((state) => state.books.startingIndex);
   const query = useSelector((state) => state.input.inputValue);
   const isLoading = useSelector((state) => state.books.isLoading);
   const category = useSelector((state) => state.filter.category);
   const sorter = useSelector((state) => state.filter.sortBy);
+  const totalItems = useSelector((state) => state.books.totalItems);
 
   const dispatch = useDispatch();
 
@@ -27,16 +28,36 @@ function Main() {
     </Spinner>
   );
 
+  const secondSpinner = (
+    <Spinner
+      className="ms-1"
+      as="span"
+      animation="border"
+      size="sm"
+      role="status"
+      aria-hidden="true"
+    />
+  );
+
   return (
     <div className="App">
       <Header />
-      {isLoading === true && spinner}
-      {startingIndex === null && <span>Sorry, no books found</span>}
-      {startingIndex > 0 && <BookList />}
+      {isLoading === true && startingIndex === 0 ? (
+        spinner
+      ) : startingIndex !== null ? (
+        <BookList />
+      ) : (
+        <span>Sorry, no books found</span>
+      )}
       {startingIndex > 0 && startingIndex % 30 === 0 && (
         <div>
-          <Button variant="outline-secondary" onClick={handleClick}>
+          <Button
+            variant="outline-secondary"
+            onClick={handleClick}
+            className="mb-5"
+          >
             Load another 30 books
+            {isLoading === true && secondSpinner}
           </Button>
         </div>
       )}
