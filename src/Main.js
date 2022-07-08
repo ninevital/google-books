@@ -13,7 +13,6 @@ function Main() {
   const isLoading = useSelector((state) => state.books.isLoading);
   const category = useSelector((state) => state.filter.category);
   const sorter = useSelector((state) => state.filter.sortBy);
-  const totalItems = useSelector((state) => state.books.totalItems);
 
   const dispatch = useDispatch();
 

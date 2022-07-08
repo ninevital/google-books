@@ -44,7 +44,7 @@ function BookCard(props) {
             {props.props.volumeInfo.authors
               ? props.props.volumeInfo.authors.map((author) => {
                   return (
-                    <span>
+                    <span key={author}>
                       {author}
                       <br />
                     </span>

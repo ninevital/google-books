@@ -10,7 +10,10 @@ function BookList() {
   const bookItems = books.map((chunk) =>
     chunk.map((book) => {
       return (
-        <Col className="mb-5 mx-auto md-auto justify-content-center">
+        <Col
+          key={book.id}
+          className="mb-5 mx-auto md-auto justify-content-center"
+        >
           <BookCard props={book} key={book.id} />
         </Col>
       );
