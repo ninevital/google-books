@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -14,6 +15,7 @@ function Header() {
   const query = useSelector((state) => state.input.inputValue);
   const category = useSelector((state) => state.filter.category);
   const sorter = useSelector((state) => state.filter.sortBy);
+  const inputRef = useRef(null);
 
   const handleCategorySelection = (event) => {
     event.preventDefault();
@@ -35,6 +37,7 @@ function Header() {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(fetchFirstBooks(query, category, sorter));
+    inputRef.current.value = "";
   };
 
   return (
@@ -51,6 +54,7 @@ function Header() {
                   placeholder="Enter your request"
                   aria-describedby="search-button"
                   onChange={handleChange}
+                  ref={inputRef}
                 />
                 <Button
                   variant="outline-secondary"
