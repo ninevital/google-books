@@ -53,7 +53,7 @@ function Main() {
           <Button
             variant="outline-secondary"
             onClick={handleClick}
-            className="mb-5"
+            className={`mb-5 ${isLoading ? "disabled" : ""}`}
           >
             Load another 30 books
             {isLoading === true && secondSpinner}
