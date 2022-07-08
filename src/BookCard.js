@@ -33,7 +33,7 @@ function BookCard(props) {
           src={
             props.props.volumeInfo.imageLinks
               ? props.props.volumeInfo.imageLinks.thumbnail
-              : "none"
+              : "/imagenotfound.png"
           }
         />
         <Card.Body>

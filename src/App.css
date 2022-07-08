@@ -35,6 +35,12 @@
   margin: 0 -10px;
 }
 
+.book-card > img {
+  width: 100%;
+  min-height: 28rem;
+  object-fit: cover;
+}
+
 .book-card:hover {
   filter: brightness(0.9);
 }
