@@ -6,7 +6,7 @@
 
 открывает приложение на [http://localhost:3000](http://localhost:3000)
 
-## Запуск запуск с помощью Docker:
+## Запуск с помощью Docker:
 
 ### `docker run -dp 3000:3000 ninevital/google-books`
 
