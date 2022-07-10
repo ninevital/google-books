@@ -1,8 +1,14 @@
 # Поиск книг с помощью Google Books API (React, Redux)
 
-## Запуск:
+## Обычный запуск:
 
 ### `npm start`
+
+открывает приложение на [http://localhost:3000](http://localhost:3000)
+
+## Запуск запуск с помощью Docker:
+
+### `docker run -dp 3000:3000 ninevital/google-books`
 
 открывает приложение на [http://localhost:3000](http://localhost:3000)
 
