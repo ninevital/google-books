@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 
 function BookList() {
   const books = useSelector((state) => state.books.bookChunks);
+  const booksFound = useSelector((state) => state.books.totalItems);
   const bookItems = books.map((chunk) =>
     chunk.map((book) => {
       return (
@@ -22,6 +23,9 @@ function BookList() {
 
   return (
     <Container className="justify-content-center">
+      <Row className="mb-5 justify-content-center">
+        <span>Books found: {booksFound}</span>
+      </Row>
       <Row className="mb-5 justify-content-center">{bookItems}</Row>
     </Container>
   );

@@ -13,6 +13,7 @@ function Main() {
   const isLoading = useSelector((state) => state.books.isLoading);
   const category = useSelector((state) => state.filter.category);
   const sorter = useSelector((state) => state.filter.sortBy);
+  const booksFound = useSelector((state) => state.books.totalItems);
 
   const dispatch = useDispatch();
 
@@ -43,11 +44,11 @@ function Main() {
       <Header />
       {isLoading === true && startingIndex === 0 ? (
         spinner
-      ) : startingIndex !== null ? (
+      ) : booksFound > 0 ? (
         <BookList />
-      ) : (
+      ) : startingIndex === null ? (
         <span>Sorry, no books found</span>
-      )}
+      ) : null}
       {startingIndex > 0 && startingIndex % 30 === 0 && (
         <div>
           <Button

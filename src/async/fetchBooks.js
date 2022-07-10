@@ -16,9 +16,6 @@ export const fetchFirstBooks = (query, category, sorter) => {
     )
       .then((response) => {
         if (response.ok) {
-          console.log(
-            `https://www.googleapis.com/books/v1/volumes?q=${query}${categorySearch}&startIndex=0&maxResults=30&orderBy=${sorter}&key=${APIKey}`
-          );
           return response.json();
         }
         throw new Error("Something went wrong");
